@@ -63,22 +63,22 @@ a:active,
  * Menu navigation
  */
 
-#menu {
+nav {
     background: #ddd url(/img/tropo-red/bg_menu_gradient.png) repeat-x;
 }
-#menu ul li a {
+nav ul li.topnav a {
     background: transparent url(/img/tropo-red/icon_menu_swirl.png) 0.833333em 0.916667em no-repeat;
     color: #111;
 }
 /* .hover is a class added by js for the currently hovered/focused menu */
-#menu ul li.hover a {
+nav ul li.hover a {
     background: #f4717a url(/img/tropo-red/icon_menu_swirl_dropdown.png) 0.833333em 0.916667em no-repeat;
     color: #fff;
 }
-#menu ul li.hover a:hover {
+nav ul li.hover a:hover {
     background-color: #c1272d;
 }
-#menu ul li.hover ul {
+nav ul li.hover ul {
     background-color: #f4717a;
 }
 
@@ -86,7 +86,7 @@ a:active,
  * Footer
  */
 
-#footer {
+footer {
     background: #ddd url(/img/tropo-red/bg_footer_gradient.png) repeat-x;
 }
 
@@ -212,6 +212,12 @@ a:active,
     border: 1px solid #c1272d;
 }
 
+.action-box .inner {
+    color: #111;
+    background-color: #ffafb6;
+    border: 1px solid #c1272d;
+}
+
 .select-list input {
     color: #fff;
     background: #f4717a;
@@ -276,7 +282,7 @@ table caption {
 }
 
 table.grid, table.grid td {
-    border: 1px solid #999;    
+    border: 1px solid #999;
 }
 
 .select-list li, .NotificationTable td {
@@ -402,6 +408,29 @@ div.ContextualPopup div.Inner a, div.ContextualPopup div.Inner a:visited {
  * /
 
 /* Comments */
+
+.talkform .disabled {
+    background: transparent !important;
+}
+
+/*S2 talkpage*/
+.comment .link, .entry .link {color: #111;} /*resets color so :before and :after elements don't get the anchor color*/
+
+.comment-wrapper-odd .header {
+    border-bottom: 1px solid #c1272c;
+    border-right: 1px solid #c1272c;
+    background-color: #c0c0c0;
+}
+.comment-wrapper-even .header {
+    border-bottom: 1px solid #f4717a;
+    border-right: 1px solid #f4717a;
+    background-color: #e2e2e2;
+}
+
+.screened .header{ background-color: #C29B9B !important;}
+
+/*bml talkpage*/
+
 
 .talkform .disabled {
     background: transparent !important;
