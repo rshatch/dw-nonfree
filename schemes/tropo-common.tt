@@ -104,9 +104,7 @@ the same terms as Perl itself.  For a copy of the license, please reference
             </div>
         </div>
         [% dw_scheme.final_body_html %]
-      <script>
-        $(document).foundation();
-      </script>
+        [%- PROCESS block.script_init -%]
     </body>
 </html>
 
