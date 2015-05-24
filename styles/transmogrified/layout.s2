@@ -668,6 +668,7 @@ function Page::print_default_stylesheet () {
 
     .entry .userpic img, .comment .userpic img {
         border: none;
+        display:block;
     }
 
     .entry-title, .comment-title {
