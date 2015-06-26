@@ -27,7 +27,7 @@ On [[date]] at [[time]] your journal was deleted. The journal deletion took plac
   
 If you made this change yourself, this email serves as a confirmation of your change.
    
-If you didn't delete your journal, your journal's security has been compromised. Please contact Support [[http://www.dreamwidth.org/support/]] to learn what steps you should take to resecure your journal.
+If you didn't delete your journal, your journal's security has been compromised. Please contact Support [[https://www.dreamwidth.org/support/]] to learn what steps you should take to resecure your journal.
 
 This letter was sent out automatically to help you keep your account secure. You can't opt-out of receiving these letters. 
 .
@@ -73,7 +73,7 @@ shop.email.comm.close<<
 
 Congratulations on your community's paid time! You can see a list of all the premium features you now have access to here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us to 
 keep building an awesome service.
@@ -101,7 +101,7 @@ Please remember to include both the order number and the PO box number! Also, be
 
 Thank you for your purchase! You can see a list of all the premium features you'll have access to here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us to 
 keep building an awesome service.
@@ -123,7 +123,7 @@ This email confirms your purchase from the [[sitename]] shop.  You can view your
 Thank you for your purchase! You can see a list of all the premium features 
 here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us to 
 keep building an awesome service.
@@ -137,7 +137,7 @@ shop.email.email.close<<
 
 We look forward to having you on the site! You can see a list of all the premium features you'll have access to here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 .
 
@@ -145,7 +145,7 @@ shop.email.user.close<<
 
 Congratulations on your paid time! You can see a list of all the premium features you now have access to here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us to 
 keep building an awesome service.
@@ -196,7 +196,7 @@ here:
 If you don't want to renew your community's paid account, don't worry -- it'll still be there for you to use. You and your community members just
 won't have access to all of the paid account features. You can see a list of those paid account features here:
 
-  http://www.dreamwidth.org/support/faqbrowse?faqid=4
+  https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 [[sitename]] is supported entirely by your payments. We aren't owned
 by a corporate conglomerate, we haven't taken any venture capital from
@@ -232,7 +232,7 @@ another three days if you don't renew. If that happens, you'll still
 be able to use it; you just won't have access to our paid features
 anymore. You can see a list of those paid features here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us
 to build an awesome online home.
@@ -286,7 +286,7 @@ still keep using the site. You just won't have access to all of the
 paid account features. You can see a list of those paid account features
 here:
 
-  http://www.dreamwidth.org/support/faqbrowse?faqid=4
+  https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 [[sitename]] is supported entirely by your payments. We aren't owned
 by a corporate conglomerate, we haven't taken any venture capital from
@@ -322,7 +322,7 @@ another three days if you don't renew. If that happens, you'll still
 be able to use it; you just won't have access to our paid features
 anymore. You can see a list of those paid features here:
 
-    http://www.dreamwidth.org/support/faqbrowse?faqid=4
+    https://www.dreamwidth.org/support/faqbrowse?faqid=4
 
 Thanks for supporting Dreamwidth, and for making it possible for us
 to build an awesome online home.
@@ -457,9 +457,9 @@ tropo.search.siteuser=Site &amp; User
 
 widget.createaccountentercode.getcode=If you do not have an account creation code, you can find or request one in <?ljcomm dw_codesharing ljcomm?>.
 
-widget.createaccountentercode.info=To create a new account, enter an account creation code (<a href="http://www.dreamwidth.org/support/faqbrowse?faqid=105">Why?</a>):
+widget.createaccountentercode.info1=To create a new account, enter an account creation code (<a href="https://www.dreamwidth.org/support/faqbrowse?faqid=105">Why?</a>):
 
-widget.importchoosesource.disabled=Starting a new import is temporarily disabled due to high volume. Existing imports will still be processed in the order they were submitted. New imports will be available again once the import queue clears out a little more. For more information, see <a href="http://dw-maintenance.dreamwidth.org">dw_maintenance</a>.
+widget.importchoosesource.disabled1=Starting a new import is temporarily disabled due to high volume. Existing imports will still be processed in the order they were submitted. New imports will be available again once the import queue clears out a little more. For more information, see <a href="https://dw-maintenance.dreamwidth.org">dw_maintenance</a>.
 
 widget.shopcart.paymentmethod.creditcardpp=[N/A]
 

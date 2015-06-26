@@ -156,7 +156,7 @@ HTML
             {
                 name => 'community',
                 items => [
-                    [ 'http://dw-news.dreamwidth.org/', 'site_news' ],
+                    [ 'https://dw-news.dreamwidth.org/', 'site_news' ],
                     [ '/latest', 'latest_things', 'footnote' ],
                     [ '/random', 'random_journal', 'footnote' ],
                     [ '/community/random', 'random_community', 'footnote' ],
@@ -172,7 +172,7 @@ HTML
             },
         );
 
-        push @{$columns[1]->{items}}, [ 'http://dw-codesharing.dreamwidth.org/', 'codeshare' ]
+        push @{$columns[1]->{items}}, [ 'https://dw-codesharing.dreamwidth.org/', 'codeshare' ]
             if $LJ::USE_ACCT_CODES;
 
         foreach my $column ( @columns ) {

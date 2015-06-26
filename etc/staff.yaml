@@ -1,7 +1,7 @@
 -   name: Dreamwidth Studios, LLC's Owners
     people:
         -   name: Denise Paolucci
-            img: http://www.dreamwidth.org/userpic/256/6
+            img: https://www.dreamwidth.org/userpic/256/6
             bio:
                 - |
                     (the Suit) began working on the
@@ -22,7 +22,7 @@
                 - denise
                 - dw_biz
         -   name: Mark Smith
-            img: http://www.dreamwidth.org/userpic/257/6
+            img: https://www.dreamwidth.org/userpic/257/6
             bio:
                 - |
                     (the Geek) began volunteering with LiveJournal.com in 2001 in technical
@@ -45,7 +45,7 @@
 -   name: Dreamwidth Studios, LLC's Employees
     people:
         -   name: Afuna
-            img: http://www.dreamwidth.org/userpic/258/6
+            img: https://www.dreamwidth.org/userpic/258/6
             bio:
                 - |
                     first learned Perl as part of the Support team on LiveJournal. There, she picked
@@ -61,7 +61,7 @@
             official:
                 - fu
         -   name: MissKat
-            img: http://www.dreamwidth.org/userpic/5322645/294908
+            img: https://www.dreamwidth.org/userpic/5322645/294908
             bio:
                 - |
                     heads up the Dreamwidth Support team. She specializes in facilitating
@@ -77,7 +77,7 @@
                 - misskat
                 - dw_support
         -   name: Alierak
-            img: http://www.dreamwidth.org/userpic/314317/7805
+            img: https://www.dreamwidth.org/userpic/314317/7805
             bio:
                 - |
                     is Dreamwidth's backup sysadmin on call, helping Mark wrangle servers
@@ -97,7 +97,7 @@
     note: "People who are currently working on major projects for Dreamwidth!"
     people:
         -   name: Azurelunatic
-            img: http://www.dreamwidth.org/userpic/529546/6
+            img: https://www.dreamwidth.org/userpic/529546/6
             bio:
                 - |
                     came into the LiveJournal volunteer IRC channel during one of the early
@@ -118,7 +118,7 @@
             official:
                 - dw_antispam
         -   name: ChemicalLace
-            img: http://www.dreamwidth.org/userpic/529533/6
+            img: https://www.dreamwidth.org/userpic/529533/6
             bio:
                 - |
                     is &#8531; of the Dreamwidth Support Triumvirate.  She volunteered for
@@ -131,7 +131,7 @@
             official:
                 - dw_support
         -   name: DomTheKnight
-            img: http://www.dreamwidth.org/userpic/2564/6
+            img: https://www.dreamwidth.org/userpic/2564/6
             bio:
                 - |
                     is leading the user acceptance testing team for Dreamwidth and is &#8531;
@@ -148,7 +148,7 @@
                 - dw_beta
                 - dw_support
         -   name: Jennifer Griffin
-            img: http://www.dreamwidth.org/userpic/210571/6
+            img: https://www.dreamwidth.org/userpic/210571/6
             bio:
                 - |
                     does Terms of Service enforcement because Mark
@@ -169,7 +169,7 @@
             official:
                 - dw_tos
         -   name: Audra Johnson
-            img: http://www.dreamwidth.org/userpic/261/6
+            img: https://www.dreamwidth.org/userpic/261/6
             bio:
                 - |
                     (the Information Architect) has insatiable needs to collate and organize
@@ -187,7 +187,7 @@
                 - dw_wiki
                 - dw_styles
         -   name: Andrea Nall
-            img: http://www.dreamwidth.org/userpic/262/6
+            img: https://www.dreamwidth.org/userpic/262/6
             bio:
                 - |
                     has been working on the Dreamwidth project since
@@ -204,7 +204,7 @@
                     time? Between staring at pages of code for hours on end and school? If only
                     she didn't have to sleep.
         -   name: Pau Amma
-            img: http://www.dreamwidth.org/userpic/263/6
+            img: https://www.dreamwidth.org/userpic/263/6
             bio:
                 - |
                     has been volunteering for LiveJournal since early 2005 and
@@ -224,7 +224,7 @@
                     His alignment shifts randomly between Useful Evil, Chaotic
                     Punny, and Ergative Absolutive.
         -   name: Deborah
-            img: http://www.dreamwidth.org/userpic/5456520/37793
+            img: https://www.dreamwidth.org/userpic/5456520/37793
             bio:
                 - |
                     co-leads the accessibility team. She spends her time writing accessibility
@@ -235,7 +235,7 @@
             official:
                 - dw_accessibility
         -   name: Ricky Buchanan
-            img: http://www.dreamwidth.org/userpic/529540/6
+            img: https://www.dreamwidth.org/userpic/529540/6
             bio:
                 - |
                     continues her fight for an internet she can actually use by leading the
@@ -248,7 +248,7 @@
             official:
                 - dw_accessibility
         -   name: Sarah
-            img: http://www.dreamwidth.org/userpic/529553/6
+            img: https://www.dreamwidth.org/userpic/529553/6
             bio:
                 - |
                     serves as Dreamwidth's executive assistant, which involves

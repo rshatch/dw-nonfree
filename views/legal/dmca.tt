@@ -40,7 +40,7 @@
 
 <li>Notifications must specifically identify the copyrighted work being infringed upon. For instance, if the work is a published book, provide the title, author, and ISBN; if the work is a magazine article, provide the title, author, magazine name, and magazine issue; if the work is available on the Internet, provide the URL of the work.</li>
 
-<li>Notifications must specifically include the URL where the work is being infringed upon [% site.nameshort %]'s servers. For us to be able to reasonably identify the material, you must provide us with the complete URL, not a link to the entire journal. For instance, instead of http://username.[% site.domain %] (a link to the entire journal), provide http://username.[% site.domain %]/123.html (a link to the specific entry).</li>
+<li>Notifications must specifically include the URL where the work is being infringed upon [% site.nameshort %]'s servers. For us to be able to reasonably identify the material, you must provide us with the complete URL, not a link to the entire journal. For instance, instead of https://username.[% site.domain %] (a link to the entire journal), provide https://username.[% site.domain %]/123.html (a link to the specific entry).</li>
 
 <li>Notifications must include sufficient information for us to contact you, including your address, your telephone number, and your email address.</li>
 
