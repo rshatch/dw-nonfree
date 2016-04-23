@@ -7,7 +7,7 @@
 # Authors:
 #      Mark Smith <mark@dreamwidth.org>
 #
-# Copyright (c) 2009-2014 by Dreamwidth Studios, LLC.
+# Copyright (c) 2009-2016 by Dreamwidth Studios, LLC.
 #
 # This program is NOT free software or open-source; you can use it as an
 # example of how to implement your own site-specific extensions to the
@@ -22,6 +22,10 @@ use warnings;
 use DW::Routing;
 
 DW::Routing->register_static( '/about', 'misc/about.tt', app => 1 );
+
+DW::Routing->register_static( '/site/bot', 'site/bot.tt', app => 1 );
+DW::Routing->register_static( '/site/brand', 'site/brand.tt', app => 1 );
+DW::Routing->register_static( '/site/policy', 'site/policy.tt', app => 1 );
 
 DW::Routing->register_string( "/internal/local/404", \&error_404_handler, app => 1 );
 
