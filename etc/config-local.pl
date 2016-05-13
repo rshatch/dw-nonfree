@@ -1,19 +1,26 @@
 #!/usr/bin/perl
 # -*-perl-*-
 
-# Dreamwidth configuration file.  Copy this out of the documentation
-# directory to etc/config-local.pl and edit as necessary.  The reason
-# it's not in the etc directory already is to protect it from
-# getting clobbered when you upgrade to the newest Dreamwidth code in
-# the future.
+# THIS FILE IS INTENDED FOR EXAMPLE/DOCUMENTATION PURPOSES ONLY.
+# An active site should have a customized version of this file
+# located in ext/local/etc.  This file exists primarily to document
+# what options are being used in production on the main Dreamwidth
+# site, for use in development.  A more generic etc/config-local.pl
+# is available in the dw-free repository.
 
-# This, and config-private.pl should be the only files you need to 
+# Dreamwidth configuration file.  Copy this out of the current
+# directory to ext/local/etc/config-local.pl and edit as necessary.
+# This will separate your active config file from the canonical
+# one under version control, and protect it from getting clobbered
+# when you upgrade to the newest Dreamwidth code in the future.
+
+# This, and config-private.pl should be the only files you need to
 # change to get the Dreamwidth code to run on your site. Variables
-# which are set by $DW::PRIVATE::... should be configured in 
+# which are set by $DW::PRIVATE::... should be configured in
 # config-private.pl instead.
 
-# Use the  checkconfig.pl utility to find any other config variables 
-# that might not be documented here. You should be able to set config 
+# Use the checkconfig.pl utility to find any other config variables
+# that might not be documented here. You should be able to set config
 # values here and have the DW code run; if you have to modify the
 # code itself, it's a bug and you should report it.
 
@@ -22,7 +29,12 @@
 
     # keep this enabled only if this site is a development server
     $IS_DEV_SERVER = 1;
-    $ENABLE_BETA_TOOLS = 1;
+
+    # change this to "1" to enable certain site content to respond securely
+    $USE_SSL = 0;
+
+    # change this to "1" to redirect all incoming connections to use HTTPS
+    $USE_HTTPS_EVERYWHERE = 0;
 
     # home directory
     $HOME = $ENV{'LJHOME'};
@@ -36,6 +48,10 @@
     $SITENAMESHORT = "Dreamwidth";
     $SITENAMEABBREV = "DW";
     $SITECOMPANY = "Dreamwidth Studios, LLC";
+
+    # supported languages (defaults to qw(en) if none given)
+    # First element is default language for user interface, untranslated text
+    @LANGS = qw( en_DW );
 
     # MemCache information, if you have MemCache servers running
     @MEMCACHE_SERVERS = ('127.0.0.1:11211');
@@ -51,12 +67,9 @@
             private_key => $DW::PRIVATE::RECAPTCHA{private_key},
         );
 
-    # If enabled, disable people coming in over Tor exits from using various parts of the site.
-    $USE_TOR_CONFIGS = 0;
-
-    # Configure what you want blocked here.  Requires $USE_TOR_CONFIGS to be on.
-    %TOR_CONFIG = (
-        shop => 1,     # Disallow Tor users from accessing the Shop.
+    # setup textcaptcha
+    %TEXTCAPTCHA = (
+            api_key => $DW::PRIVATE::TEXTCAPTCHA{api_key},
     );
 
     # PayPal configuration.  If you want to use PayPal, uncomment this
@@ -76,6 +89,17 @@
     #        email     => $DW::PRIVATE::PAYPAL{email},
     #    );
 
+    # YouTube configuration.
+    # To get access  to YouTube APIs, you will need to create a Google API key.
+    # Uncomment this section and make sure to fill in the fields at the bottom of config-private.pl.
+    #%YOUTUBE_CONFIG = (
+    #        # api URL, the token gets appended to this
+    #        api_url   =>        'https://www.googleapis.com/youtube/v3/videos?id=',
+    #
+    #        # credentials for the API
+    #        apikey      => $DW::PRIVATE::YOUTUBE{apikey},
+    #);
+
     # if you define these, little help bubbles appear next to common
     # widgets to the URL you define:
     %HELPURL = (
@@ -91,6 +115,10 @@
     # (Note: you need to provide your own 404-error-local.bml)
     $PAGE_404 = "404-error-local.bml";
 
+    # additional domain from which to serve the iframes for embedded content
+    # for security reasons, we strongly recommend that this not be on your $DOMAIN
+    #$EMBED_MODULE_DOMAIN = "embedded.dreamwidth.net";
+
     # merchandise link
     $MERCH_URL = "http://www.zazzle.com/dreamwidth*";
 
@@ -105,14 +133,55 @@
         paid12 => [  25, 12, 'paid', 250   ],
         seed   => [ 200, 99, 'seed', 2000   ],
         points => [],
+        rename => [ 15, undef, undef, 150 ],
+    #    vgifts => [],     # if present, sell virtual gifts
     );
 
-    %LJ::BETA_FEATURES = (
-        "journaljquery" => {
-            start_time  => 0,
-            end_time    => "Inf",
-        },
+    # number of days to display virtual gifts on the profile - default to two weeks
+    # $VGIFT_EXPIRE_DAYS = 14;
+
+    # You can turn on/off community importing here.
+    $ALLOW_COMM_IMPORTS = 0;
+
+    # If this is defined and a number, if someone tries to import more than this many
+    # comments in a single import, the error specified will be raised and the job will fail.
+    $COMMENT_IMPORT_MAX = undef;
+    $COMMENT_IMPORT_ERROR = "Importing more than 10,000 comments is currently disabled.";
+
+    # privileges for various email aliases in /admin/sendmail
+    # make sure these map to existing support categories on your site
+    %SENDMAIL_ACCOUNTS = (
+        support  => 'supportread:support',
+        abuse    => 'supportread:abuse',
+        accounts => 'supportread:accounts',
+        antispam => 'siteadmin:spamreports',
     );
+
+    # Set the URI for iOS to find the icon it uses for home-screen
+    # bookmarks on user subdomains (or anything else rendered through
+    # S2). This file is not part of the dw-free installation, and is
+    # therefore disabled by default.
+    $APPLE_TOUCH_ICON = "$LJ::RELATIVE_SITEROOT/apple-touch-icon.png";
+
+    # sphinx search daemon
+    #@SPHINX_SEARCHD = ( '127.0.0.1', 3312 );
+
+    # example betafeature config
+#    %BETA_FEATURES = (
+#        "updatepage" => {
+#            start_time => 0,
+#            end_time => "Inf",
+#        },
+#        "s2comments" => {
+#            start_time => 0,
+#            end_time => "Inf",
+#            sitewide => 1,
+#        },
+#    );
+
+    # Domains that are known to support HTTPS. This is an optimization to
+    # reduce traffic to our proxy and improve the user experience.
+    $HTTPS_UPGRADE_REGEX = qr!\.(?:photobucket\.com|imgur\.com|yandex\.ru|xkcd\.com)/!;
 }
 
 1;
