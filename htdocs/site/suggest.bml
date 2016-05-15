@@ -290,7 +290,7 @@ head<=
     use strict;
 
     LJ::set_active_resource_group( 'jquery' );
-    LJ::need_res( { group => 'jquery' }, 'js/jquery/jquery.autogrow-textarea.js' );
+    LJ::need_res( { group => 'jquery' }, 'js/jquery.autogrow-textarea.js' );
 
 }
 _code?>
