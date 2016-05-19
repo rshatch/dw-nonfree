@@ -178,22 +178,14 @@ sub suggestion_handler {
             }
 
             unless ( $errors->exist ) {
-                my $commname = $destination->ljuser_display;
-                my $commlink = $destination->journal_base;
-                my $ret = <<END;
-<p>Your suggestion has been submitted to the moderation queue of $commname.
-    Once approved, it will appear in the community for discussion and evaluation.</p>
-
-<p>From here you can:</p>
-<ul>
-    <li><a href='$LJ::SITEROOT/site/suggest'>Make another suggestion</a></li>
-    <li><a href='$commlink'>View the suggestions community</a></li>
-</ul>
-END
-                $ret =~ s/\n//g;
-
-                return DW::Template->render_template( 'success.tt',
-                    { message => $ret } );
+                return DW::Controller->render_success( 'site/suggest.tt',
+                    { commname => $destination->ljuser_display },
+                    [ { text_ml => ".success.link.another",
+                        url => "$LJ::SITEROOT/site/suggest" },
+                      { text_ml => ".success.link.view",
+                        url => $destination->journal_base },
+                    ]
+                );
             }
 
         } elsif ( $post_args->{preview} ) {

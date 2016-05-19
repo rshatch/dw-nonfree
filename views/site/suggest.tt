@@ -22,13 +22,17 @@ or redistribute it, with or without modifications.
 
 %][%-
     sections.title='Suggest an Improvement';
-    CALL dw.active_resource_group( "jquery" );
-    CALL dw.need_res( { group => "jquery" },
+    CALL dw.active_resource_group( "foundation" );
+    CALL dw.need_res( { group => "foundation" },
         'js/jquery.autogrow-textarea.js'
     )
 -%]
 
-[%- INCLUDE components/errors.tt errors = errors -%]
+[%- sections.head = BLOCK %]
+    <style type="text/css">
+        p.intro { font-size: smaller; margin-left: 1.5em; }
+    </style>
+[% END %]
 
 [%- IF preview -%]
     <h2>Preview:</h2>
@@ -42,7 +46,7 @@ or redistribute it, with or without modifications.
     <hr>
 [%- END -%]
 
-<p>Have a way to make Dreamwidth better? This is where you submit it!
+<p class="intro">Have a way to make Dreamwidth better? This is where you submit it!
 Filling out this form will send an entry to the moderation queue of the
 [% destination.ljuser_display %] community. You may want to
 <a href='[% site.root %]/search?user=[% destination.user %]'>search the
@@ -50,19 +54,19 @@ community</a> before making a new suggestion. If your suggestion hasn't
 been submitted before, it will be posted for discussion, voting, and
 possible implementation.</p>
 
-<p>Anyone can submit a suggestion. Other members of the Dreamwidth community
+<p class="intro">Anyone can submit a suggestion. Other members of the Dreamwidth community
 will consider the suggestion, make comments for improvement to the suggestion,
 and talk about its benefits and drawbacks. The entry will also include a poll
 for people to register their like or dislike for an idea.</p>
 
-<p>We'll use the results of the discussion and polling, along with our plans
+<p class="intro">We'll use the results of the discussion and polling, along with our plans
 for the site and our knowledge of the technical issues involved, to determine
 which suggestions get moved into our bug-tracking database. (Neither positive
 comments nor good results in the poll will guarantee that the suggestion will
 get implemented, but they're one of the tools we'll use to see how popular an
 idea is.)</p>
 
-<p>All fields are required. HTML will be escaped, so don't use any tags unless
+<p class="intro">All fields are required. HTML will be escaped, so don't use any tags unless
 you want them to display as the tag.</p>
 
 [%# Build the suggestions form. All fields required. %]
@@ -95,7 +99,8 @@ you want them to display as the tag.</p>
                   class='expand' ) %]
 
 [%# does the user want to be notified of comments? %]
-<p><label for='email' class='left options'>Notify me of comments</label>
+<p><label for='email' class='left options' style="margin-right: 0.5em">
+    Notify me of comments</label>
 [% form.checkbox( name='email', id='email', value=1, default=1 ) %]
 </p>
 
