@@ -15,6 +15,9 @@ or redistribute it, with or without modifications.
 %][%-
     sections.title="Using Dreamwidth's Brand"
 -%]
+
+[%- CALL dw.active_resource_group( "foundation" ) -%]
+
 <p>In order to protect our users from confusion and to protect our identity
 and reputation, we have set forth guidelines for using our name and our logos.
 This applies to anyone who would like to run a production site using any of
@@ -37,7 +40,7 @@ and/or mark as an official or sponsored use.</p>
 <p>If you want to do something cool, and you think it contradicts something in
 this set of guidelines, contact us and we'll talk it over.</p>
 
-<h2>Definitions</h2><br />
+<h2>Definitions</h2>
 
 <ul>
     <li><b>Client</b>: A program (either downloadable or running via internet)
@@ -58,9 +61,9 @@ this set of guidelines, contact us and we'll talk it over.</p>
         swirl</a>, and the
         <a href='https://s.dreamwidth.org/img/nouserpic.png'>swirled 'd'</a>
         are all trademarks of Dreamwidth Studios, LLC (registration pending).</li>
-</ul><br />
+</ul>
 
-<h2>General Guidelines</h2><br />
+<h2>General Guidelines</h2>
 
 <ul>
     <li>You may only use Dreamwidth trademarks in a client without our express
@@ -89,9 +92,9 @@ this set of guidelines, contact us and we'll talk it over.</p>
         client's icons, as long as you follow all of the above rules.</li>
     <li>If you want to do something that doesn't comply with the above rules
     (such as making a closed-source application), contact us to discuss it.</li>
-</ul><br />
+</ul>
 
-<h2>Site Name</h2><br />
+<h2>Site Name</h2>
 
 <ul>
     <li>The site's name is <em>Dreamwidth Studios</em>, and the company that
@@ -112,9 +115,9 @@ this set of guidelines, contact us and we'll talk it over.</p>
         that is explicit, hateful, discriminatory, exclusionary, or that violates
         our <a href='https://www.dreamwidth.org/legal/principles'>Guiding
         Principles</a>.</li>
-</ul><br />
+</ul>
 
-<h2>Site Logo</h2><br />
+<h2>Site Logo</h2>
 <ul>
     <li>You <em>may</em> use our graphic trademarks in a journalistic fashion --
         for instance, if you are making a blog post or writing a newspaper
@@ -139,9 +142,9 @@ this set of guidelines, contact us and we'll talk it over.</p>
         that is explicit, hateful, discriminatory, exclusionary, or that violates
         our <a href='https://www.dreamwidth.org/legal/principles'>Guiding
         Principles</a>.</li>
-</ul><br />
+</ul>
 
-<h2>Site Design</h2><br />
+<h2>Site Design</h2>
 <ul>
     <li>The default site design visible on www.dreamwidth.org, known as
         'Tropospherical Red', is our default visual identity. Because of this,
@@ -159,9 +162,9 @@ this set of guidelines, contact us and we'll talk it over.</p>
         hateful, discriminatory, exclusionary, or that violates our
         <a href='https://www.dreamwidth.org/legal/principles'>Guiding
         Principles</a>.</li>
-</ul><br />
+</ul>
 
-<h2>Source Code</h2><br />
+<h2>Source Code</h2>
 <ul>
     <li>The <a href='https://github.com/dreamwidth/'>source code</a> for
         Dreamwidth Studios is based on code developed and maintained by
@@ -180,4 +183,4 @@ this set of guidelines, contact us and we'll talk it over.</p>
         please let us know! We would like to add a link to your site to our
         <a href='https://www.dreamwidth.org/site/opensource'>Open Source</a>
         page.</li>
-</ul><br />
+</ul>

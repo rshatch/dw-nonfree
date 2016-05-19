@@ -15,6 +15,9 @@ or redistribute it, with or without modifications.
 %][%-
     sections.title='Policy Center'
 -%]
+
+[%- CALL dw.active_resource_group( "foundation" ) -%]
+
 <p>In accordance with our commitment to open operations, we will make available
 as much information as we can about our policies, our operating procedures, and
 the steps we take to enforce our policies.</p>
