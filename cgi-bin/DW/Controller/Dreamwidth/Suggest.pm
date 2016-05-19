@@ -78,25 +78,10 @@ sub suggestion_handler {
             }
 
             # build out the post body including poll
-            my $suggestion = <<END;
-<div class='suggestions-entry'>
-<p><em><strong>Title:</strong></em><br>$ehtml_args{title}</p>
-<p><em><strong>Area:</strong></em><br>$ehtml_args{area}</p>
-<p><em><strong>Summary:</strong></em><br>$ehtml_args{summary}</p>
-<div class='suggestions-longdescription'>
-<p><em><strong>Description:</strong></em><br>$ehtml_args{description}</p>
-
-<div class='suggestions-poll'>
-<poll name='$ehtml_args{title}' whovote='all' whoview='all'>
-<poll-question type='radio'>This suggestion:
-<poll-item>Should be implemented as-is.</poll-item>
-<poll-item>Should be implemented with changes. (please comment)</poll-item>
-<poll-item>Shouldn't be implemented.</poll-item>
-<poll-item>(I have no opinion)</poll-item>
-<poll-item>(Other: please comment)</poll-item>
-</poll-question></poll></div></div></div>
-END
-            $suggestion =~ s/\n//g;
+            my $suggestion = DW::Template->template_string(
+                "site/suggest_entry.tt",
+                { post => \%ehtml_args, include_poll => 1 }
+            );
 
             # We have all the pieces, so let's build the post for DW.
             # For this, we're going to post as the user (so they get
@@ -117,7 +102,8 @@ END
                     'security'        => 'public',
                     'usejournal_okay' => 1,
                     'props'           => { taglist => 'bugzilla: unmigrated',
-                                           opt_noemail => !$post_args->{email}
+                                           opt_noemail => !$post_args->{email},
+                                           opt_preformatted => 1,
                                          },
                     'tz'              => 'guess',
                     }, \$response, {
@@ -133,7 +119,7 @@ END
                 # that's okay, because we want to format this a little
                 # differently anyway.
 
-                my ( $ghi_subject, $ghi_desc, $ghi_args, $ghi_post );
+                my ( $ghi_subject, $ghi_desc, $ghi_args );
 
                 $ghi_subject = LJ::eurl( $post_args->{title} );
 
@@ -146,15 +132,10 @@ END
 
                 $ghi_args = "body=$ghi_desc&title=$ghi_subject";
 
-                $ghi_post = <<END;
-<p>To post this entry to GitHub, use this link and change any of the fields
-    as appropriate:</p>
-<blockquote><p>
-    <a href='https://github.com/dreamwidth/dw-free/issues/new?$ghi_args'>Post
-    '$ehtml_args{title}' to GitHub Issues</a>.</p></blockquote>
-<p>Once you do, retag both this entry and the public entry it belongs with.</p>
-END
-                $ghi_post =~ s/\n//g;
+                my $ghi_post = DW::Template->template_string(
+                    "site/suggest_ghi.tt",
+                    { ghi_args => $ghi_args, title => $post_args->{title} }
+                );
 
                 # and we post that post to the community. (the suggestions_bot
                 # account should have unmoderated posting ability, so that the
@@ -180,7 +161,9 @@ END
                     'usejournal'      => $destination->user,
                     'security'        => 'private',
                     'usejournal_okay' => 1,
-                    'props'           => { taglist => 'admin: unmigrated' },
+                    'props'           => { taglist => 'admin: unmigrated',
+                                           opt_preformatted => 1,
+                                         },
                     'tz'              => $remote_tz,
                     }, \$response2, {
                     'nopassword'      => 1,
@@ -217,18 +200,16 @@ END
             # make preview: first preview the title and text as
             # it would show up in the entry later; we don't need
             # the poll in here, as the user can't influence it anyway
-            $ehtml_args{$_} = LJ::ehtml( $post_args->{$_} ) foreach @pieces;
+            $ehtml_args{$_} = LJ::html_newlines( LJ::ehtml( $post_args->{$_} ) )
+                foreach @pieces;
 
-            my $suggestion = <<END;
-<p><em><strong>Title:</strong></em><br>$ehtml_args{title}</p>
-<p><em><strong>Area:</strong></em><br>$ehtml_args{area}</p>
-<p><em><strong>Summary:</strong></em><br>$ehtml_args{summary}</p>
-<p><em><strong>Description:</strong></em><br>$ehtml_args{description}</p>
-END
-            $suggestion =~ s/\n//g;
+            my $suggestion = DW::Template->template_string(
+                "site/suggest_entry.tt",
+                { post => \%ehtml_args, include_poll => 0 }
+            );
 
-            $rv->{preview}       = 1;
-            $rv->{suggestion}    = LJ::html_newlines( $suggestion );
+            $rv->{preview} = 1;
+            $rv->{suggestion} = $suggestion;
 
             if ( $LJ::SPELLER ) {
                 my $s = new LJ::SpellCheck { spellcommand => $LJ::SPELLER,
