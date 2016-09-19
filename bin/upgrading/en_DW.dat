@@ -8,30 +8,6 @@ entryform.htmlfaq.site=Site-specific markup tags
 
 entryform.pollcreator=Poll Creator
 
-esn.security_attribute_changed.account_activated.email_text<<
-Dear [[username]],
- 
-On [[date]] at [[time]] your journal was undeleted. The journal activation took place from the following IP address: [[ip]].
-  
-If you made this change yourself, this email serves as a confirmation of your change.
-   
-If you didn't undelete your journal, your journal's security was compromised. Please contact Support to learn what steps you should take to resecure your journal.
-
-This letter was sent out automatically to help you keep your account secure. You can't opt-out of receiving these letters. 
-.
-
-esn.security_attribute_changed.account_deleted.email_text<<
-Dear [[username]],
- 
-On [[date]] at [[time]] your journal was deleted. The journal deletion took place from the following IP address: [[ip]].
-  
-If you made this change yourself, this email serves as a confirmation of your change.
-   
-If you didn't delete your journal, your journal's security has been compromised. Please contact Support [[https://www.dreamwidth.org/support/]] to learn what steps you should take to resecure your journal.
-
-This letter was sent out automatically to help you keep your account secure. You can't opt-out of receiving these letters. 
-.
-
 invitecodes.userclass.active30d=Accounts active during the past 30 days
 
 invitecodes.userclass.basic_paid=Basic paid accounts
