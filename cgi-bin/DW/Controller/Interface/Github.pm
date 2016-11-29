@@ -24,11 +24,15 @@ use Digest::HMAC_SHA1 ();
 use HTTP::Request;
 use List::MoreUtils qw/ none /;
 
-DW::Routing->register_string( "/interface/github", \&hooks_handler,
-                                app => 1,
-                                prefer_ssl => 1,
-                                methods => { POST => 1 },
-                            );
+### NOTE: Dreamwidth is moving to the Python implementation hosted at
+### https://github.com/afuna/ghi-assist/ - this is still archived as
+### proof of concept.  To reenable, uncomment the code block below:
+
+# DW::Routing->register_string( "/interface/github", \&hooks_handler,
+#                                 app => 1,
+#                                 prefer_ssl => 1,
+#                                 methods => { POST => 1 },
+#                             );
 
 my %table = (
     ping            => [ \&respond_to_ping ],
