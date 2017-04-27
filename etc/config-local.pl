@@ -165,6 +165,9 @@
     # Similarly for the icon used by Facebook for previews on links
     $FACEBOOK_PREVIEW_ICON = "$LJ::RELATIVE_SITEROOT/img/Swirly-d-square.png";
 
+    # Needed for concatenation of static resources (see bin/build-static.sh)
+    $STATDOCS = "$HOME/build/static";
+
     # sphinx search daemon
     #@SPHINX_SEARCHD = ( '127.0.0.1', 3312 );
 
