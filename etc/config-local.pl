@@ -181,9 +181,6 @@
 #        },
 #    );
 
-    # Domains that are known to support HTTPS. This is an optimization to
-    # reduce traffic to our proxy and improve the user experience.
-    $HTTPS_UPGRADE_REGEX = qr!\.(?:photobucket\.com|imgur\.com|yandex\.ru|xkcd\.com)/!;
 }
 
 1;
