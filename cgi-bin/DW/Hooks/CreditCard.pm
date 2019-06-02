@@ -22,11 +22,14 @@ use LJ::Hooks;
 
 # returns: message about having credit card charge permission +
 # info on what the charge will look like on your statement.
-LJ::Hooks::register_hook( 'cc_charge_from', sub {
+LJ::Hooks::register_hook(
+    'cc_charge_from',
+    sub {
 
-    my $ret;
+        my $ret;
 
-    $ret = "<p>" . BML::ml( 'shop.cc.charge.from' ) . "</p>";
+        $ret = "<p>" . BML::ml('shop.cc.charge.from') . "</p>";
 
-    return $ret;
-} );
+        return $ret;
+    }
+);

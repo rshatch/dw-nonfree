@@ -32,56 +32,55 @@ sub suggestion_handler {
     return $rv unless $ok;
 
     my $fatal_err = sub {
-        return DW::Template->render_template(
-            'error.tt', { message => $_[0] }
-        );
+        return DW::Template->render_template( 'error.tt', { message => $_[0] } );
     };
 
     # the community to post to:
-    my $destination = LJ::load_user( $LJ::SUGGESTIONS_COMM );
-    $rv->{destination} = $destination;  # used in template
+    my $destination = LJ::load_user($LJ::SUGGESTIONS_COMM);
+    $rv->{destination} = $destination;    # used in template
 
     # the user (which should also be an admin of the community)
     # to post the maintainer-only address as:
-    my $suggestions_bot = LJ::load_user( $LJ::SUGGESTIONS_USER );
+    my $suggestions_bot = LJ::load_user($LJ::SUGGESTIONS_USER);
 
     # verify proper configuration
-    return $fatal_err->( "This feature has not been configured for your site." )
-        unless $destination && $suggestions_bot &&
-               $destination->is_community &&
-               $suggestions_bot->can_manage_other( $destination );
+    return $fatal_err->("This feature has not been configured for your site.")
+        unless $destination
+        && $suggestions_bot
+        && $destination->is_community
+        && $suggestions_bot->can_manage_other($destination);
 
     # make sure the remote user is OK to post
     my $remote = $rv->{remote};
-    return $fatal_err->( "Sorry, you must have confirmed your email to make a suggestion." )
+    return $fatal_err->("Sorry, you must have confirmed your email to make a suggestion.")
         unless $remote->is_validated;
-    return $fatal_err->( "Sorry, suspended accounts can't make suggestions." )
+    return $fatal_err->("Sorry, suspended accounts can't make suggestions.")
         if $remote->is_suspended;
 
-    my $r = DW::Request->get;
+    my $r         = DW::Request->get;
     my $post_args = $r->post_args;
-    my $errors = DW::FormErrors->new;
+    my $errors    = DW::FormErrors->new;
 
     if ( $r->did_post ) {
         my @pieces = qw( title area summary description );
         my %ehtml_args;
 
         if ( $post_args->{post} ) {
+
             # verify that all fields are filled out:
-            foreach my $field ( @pieces ) {
+            foreach my $field (@pieces) {
                 if ( $post_args->{$field} ) {
                     $ehtml_args{$field} = LJ::ehtml( $post_args->{$field} );
-                } else {
+                }
+                else {
                     $errors->add_string( $field, "You need to fill out the $field section." );
                     $ehtml_args{$field} = '';
                 }
             }
 
             # build out the post body including poll
-            my $suggestion = DW::Template->template_string(
-                "site/suggest_entry.tt",
-                { post => \%ehtml_args, include_poll => 1 }
-            );
+            my $suggestion = DW::Template->template_string( "site/suggest_entry.tt",
+                { post => \%ehtml_args, include_poll => 1 } );
 
             # We have all the pieces, so let's build the post for DW.
             # For this, we're going to post as the user (so they get
@@ -89,29 +88,36 @@ sub suggestion_handler {
             # "bugzilla: unmigrated", so the suggestions maintainer
             # can find new/untagged posts when they want to.
 
-            my ( $response, $response2 );  # for errors returned from postevent
+            my ( $response, $response2 );    # for errors returned from postevent
             my $journalpost;
 
             unless ( $errors->exist ) {
-                $journalpost = LJ::Protocol::do_request( 'postevent', {
-                    'ver'             => $LJ::PROTOCOL_VER,
-                    'username'        => $remote->user,
-                    'subject'         => $post_args->{title},
-                    'event'           => $suggestion,
-                    'usejournal'      => $destination->user,
-                    'security'        => 'public',
-                    'usejournal_okay' => 1,
-                    'props'           => { taglist => 'bugzilla: unmigrated',
-                                           opt_noemail => !$post_args->{email},
-                                           opt_preformatted => 1,
-                                         },
-                    'tz'              => 'guess',
-                    }, \$response, {
-                    'nopassword'      => 1,
-                } );
+                $journalpost = LJ::Protocol::do_request(
+                    'postevent',
+                    {
+                        'ver'             => $LJ::PROTOCOL_VER,
+                        'username'        => $remote->user,
+                        'subject'         => $post_args->{title},
+                        'event'           => $suggestion,
+                        'usejournal'      => $destination->user,
+                        'security'        => 'public',
+                        'usejournal_okay' => 1,
+                        'props'           => {
+                            taglist          => 'bugzilla: unmigrated',
+                            opt_noemail      => !$post_args->{email},
+                            opt_preformatted => 1,
+                        },
+                        'tz' => 'guess',
+                    },
+                    \$response,
+                    {
+                        'nopassword' => 1,
+                    }
+                );
             }
 
-            if ( $journalpost ) {
+            if ($journalpost) {
+
                 # having built the post for public display, we now do
                 # a second post containing the link to create the new bug
                 # for the suggestion. we can't use $suggestion that we built,
@@ -123,7 +129,7 @@ sub suggestion_handler {
 
                 $ghi_subject = LJ::eurl( $post_args->{title} );
 
-                $ghi_desc  = "Summary%3A%0D%0A%0D%0A";
+                $ghi_desc = "Summary%3A%0D%0A%0D%0A";
                 $ghi_desc .= LJ::eurl( $post_args->{summary} );
                 $ghi_desc .= "%0D%0A%0D%0ADescription%3A%0D%0A%0D%0A";
                 $ghi_desc .= LJ::eurl( $post_args->{description} );
@@ -132,10 +138,8 @@ sub suggestion_handler {
 
                 $ghi_args = "body=$ghi_desc&title=$ghi_subject";
 
-                my $ghi_post = DW::Template->template_string(
-                    "site/suggest_ghi.tt",
-                    { ghi_args => $ghi_args, title => $post_args->{title} }
-                );
+                my $ghi_post = DW::Template->template_string( "site/suggest_ghi.tt",
+                    { ghi_args => $ghi_args, title => $post_args->{title} } );
 
                 # and we post that post to the community. (the suggestions_bot
                 # account should have unmoderated posting ability, so that the
@@ -148,26 +152,32 @@ sub suggestion_handler {
                 # if we can't figure it out, then just guess based on suggestions bot
                 my ( $remote_tz_sign, $remote_tz_offset ) =
                     ( $remote->timezone =~ m/([+|-])?(\d+)/ );
-                my $remote_tz = defined $remote_tz_offset
-                                ? sprintf( "%s%02d00", $remote_tz_sign || "+",
-                                                       $remote_tz_offset )
-                                : "guess";
+                my $remote_tz =
+                    defined $remote_tz_offset
+                    ? sprintf( "%s%02d00", $remote_tz_sign || "+", $remote_tz_offset )
+                    : "guess";
 
-                LJ::Protocol::do_request( 'postevent', {
-                    'ver'             => $LJ::PROTOCOL_VER,
-                    'username'        => $suggestions_bot->user,
-                    'subject'         => $post_args->{title},
-                    'event'           => $ghi_post,
-                    'usejournal'      => $destination->user,
-                    'security'        => 'private',
-                    'usejournal_okay' => 1,
-                    'props'           => { taglist => 'admin: unmigrated',
-                                           opt_preformatted => 1,
-                                         },
-                    'tz'              => $remote_tz,
-                    }, \$response2, {
-                    'nopassword'      => 1,
-                } );
+                LJ::Protocol::do_request(
+                    'postevent',
+                    {
+                        'ver'             => $LJ::PROTOCOL_VER,
+                        'username'        => $suggestions_bot->user,
+                        'subject'         => $post_args->{title},
+                        'event'           => $ghi_post,
+                        'usejournal'      => $destination->user,
+                        'security'        => 'private',
+                        'usejournal_okay' => 1,
+                        'props'           => {
+                            taglist          => 'admin: unmigrated',
+                            opt_preformatted => 1,
+                        },
+                        'tz' => $remote_tz,
+                    },
+                    \$response2,
+                    {
+                        'nopassword' => 1,
+                    }
+                );
             }
 
             # once all of that's done, let's tell the user it worked.
@@ -178,36 +188,43 @@ sub suggestion_handler {
             }
 
             unless ( $errors->exist ) {
-                return DW::Controller->render_success( 'site/suggest.tt',
+                return DW::Controller->render_success(
+                    'site/suggest.tt',
                     { commname => $destination->ljuser_display },
-                    [ { text_ml => ".success.link.another",
-                        url => "$LJ::SITEROOT/site/suggest" },
-                      { text_ml => ".success.link.view",
-                        url => $destination->journal_base },
+                    [
+                        {
+                            text_ml => ".success.link.another",
+                            url     => "$LJ::SITEROOT/site/suggest"
+                        },
+                        {
+                            text_ml => ".success.link.view",
+                            url     => $destination->journal_base
+                        },
                     ]
                 );
             }
 
-        } elsif ( $post_args->{preview} ) {
+        }
+        elsif ( $post_args->{preview} ) {
+
             # make preview: first preview the title and text as
             # it would show up in the entry later; we don't need
             # the poll in here, as the user can't influence it anyway
-            $ehtml_args{$_} = LJ::html_newlines( LJ::ehtml( $post_args->{$_} ) )
-                foreach @pieces;
+            $ehtml_args{$_} = LJ::html_newlines( LJ::ehtml( $post_args->{$_} ) ) foreach @pieces;
 
-            my $suggestion = DW::Template->template_string(
-                "site/suggest_entry.tt",
-                { post => \%ehtml_args, include_poll => 0 }
-            );
+            my $suggestion = DW::Template->template_string( "site/suggest_entry.tt",
+                { post => \%ehtml_args, include_poll => 0 } );
 
-            $rv->{preview} = 1;
+            $rv->{preview}    = 1;
             $rv->{suggestion} = $suggestion;
 
-            if ( $LJ::SPELLER ) {
-                my $s = new LJ::SpellCheck { spellcommand => $LJ::SPELLER,
-                                             class        => "searchhighlight",
-                                           };
+            if ($LJ::SPELLER) {
+                my $s = new LJ::SpellCheck {
+                    spellcommand => $LJ::SPELLER,
+                    class        => "searchhighlight",
+                };
                 my $spellcheck_html = $s->check_html( \$suggestion );
+
                 # unescape the <br />s for readability. All other HTML remains untouched.
                 $spellcheck_html =~ s/&lt;br \/&gt;/<br \/>/g;
 

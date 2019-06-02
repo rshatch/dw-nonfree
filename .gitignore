@@ -4,3 +4,5 @@
 .sass-cache
 # Ignore compiled CSS
 htdocs/stc/css
+
+.tidyall.d

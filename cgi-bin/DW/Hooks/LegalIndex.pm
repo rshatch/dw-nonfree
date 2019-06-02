@@ -17,11 +17,13 @@ use strict;
 use warnings;
 use LJ::Hooks;
 
-LJ::Hooks::register_hook( 'modify_legal_index', sub {
-    my $index = $_[0];
-    my @extra = qw ( principles diversity dmca );
-    unshift @$index, @extra;
-} );
-
+LJ::Hooks::register_hook(
+    'modify_legal_index',
+    sub {
+        my $index = $_[0];
+        my @extra = qw ( principles diversity dmca );
+        unshift @$index, @extra;
+    }
+);
 
 1;

@@ -22,65 +22,94 @@ use LJ::Hooks;
 
 # returns: dreamwidth.org specific FAQs for info on communities. calling
 # context should already have the <ul> inside it, so just <li> on each.
-LJ::Hooks::register_hook( 'community_faqs', sub {
+LJ::Hooks::register_hook(
+    'community_faqs',
+    sub {
 
-    my $ret;
-    my @faqs = qw/ 223 17 201 /;
+        my $ret;
+        my @faqs = qw/ 223 17 201 /;
 
-    foreach my $faq ( @faqs ) {
-        my $faqobj = LJ::Faq->load ( $faq );
-        $ret .= "<li><a href='$LJ::SITEROOT/support/faqbrowse?faqid=" . $faq . "'>" . $faqobj->question_html . "</a></li>" if $faqobj;
+        foreach my $faq (@faqs) {
+            my $faqobj = LJ::Faq->load($faq);
+            $ret .=
+                  "<li><a href='$LJ::SITEROOT/support/faqbrowse?faqid="
+                . $faq . "'>"
+                . $faqobj->question_html
+                . "</a></li>"
+                if $faqobj;
+        }
+
+        return $ret;
     }
-
-    return $ret;
-} );
+);
 
 # returns: dreamwidth.org specific FAQs for info on managing communities.
 # calling context should already have the <ul> inside it, so just a <li>
 # on each.
-LJ::Hooks::register_hook( 'community_manage_links', sub {
+LJ::Hooks::register_hook(
+    'community_manage_links',
+    sub {
 
-    my $ret;
-    my @faqs = qw/ 19 100 208 101 102 109 205 110 111 /;
+        my $ret;
+        my @faqs = qw/ 19 100 208 101 102 109 205 110 111 /;
 
-    foreach my $faq ( @faqs ) {
-        my $faqobj = LJ::Faq->load ( $faq );
-        $ret .= "<li><a href='$LJ::SITEROOT/support/faqbrowse?faqid=" . $faq . "'>" . $faqobj->question_html . "</a></li>" if $faqobj;
+        foreach my $faq (@faqs) {
+            my $faqobj = LJ::Faq->load($faq);
+            $ret .=
+                  "<li><a href='$LJ::SITEROOT/support/faqbrowse?faqid="
+                . $faq . "'>"
+                . $faqobj->question_html
+                . "</a></li>"
+                if $faqobj;
+        }
+
+        return $ret;
     }
-
-    return $ret;
-} );
+);
 
 # returns: dw_community_promo, formatted as user tag, with explanation
-LJ::Hooks::register_hook( 'community_search_links', sub {
-    my $ret;
-    my $promo = LJ::load_user( "dw_community_promo" );
-    return unless $promo;
+LJ::Hooks::register_hook(
+    'community_search_links',
+    sub {
+        my $ret;
+        my $promo = LJ::load_user("dw_community_promo");
+        return unless $promo;
 
-    $ret .= "<li>" . $promo->ljuser_display . ": " . LJ::Lang::ml( '/community/index.tt.promo.explain' ) . "</li>";
-    return $ret;
-} );
+        $ret .= "<li>"
+            . $promo->ljuser_display . ": "
+            . LJ::Lang::ml('/community/index.tt.promo.explain') . "</li>";
+        return $ret;
+    }
+);
 
-
-# returns: a selection of dreamwidth.org official comms for people to 
+# returns: a selection of dreamwidth.org official comms for people to
 # subscribe to. (only public-facing official comms, or things that might
 # be of use to the general public -- none of the project-specific comms
 # that aren't available for general membership.)
-LJ::Hooks::register_hook( 'official_comms', sub {
-    my $ret;
-    my @official = qw/ dw_news dw_maintenance dw_biz dw_suggestions dw_nifty dw_dev dw_styles dw_design /;
+LJ::Hooks::register_hook(
+    'official_comms',
+    sub {
+        my $ret;
+        my @official =
+            qw/ dw_news dw_maintenance dw_biz dw_suggestions dw_nifty dw_dev dw_styles dw_design /;
 
-    $ret .= "<h2>" . LJ::Lang::ml( '/community/index.tt.official.title', { sitename => $LJ::SITENAMESHORT } ) . "</h2>"
-            . LJ::Lang::ml( '/community/index.tt.official.explain', { sitename => $LJ::SITENAMESHORT } ) . "<ul>";
+        $ret .= "<h2>"
+            . LJ::Lang::ml( '/community/index.tt.official.title',
+            { sitename => $LJ::SITENAMESHORT } )
+            . "</h2>"
+            . LJ::Lang::ml( '/community/index.tt.official.explain',
+            { sitename => $LJ::SITENAMESHORT } )
+            . "<ul>";
 
-    foreach my $comm ( @official ) {
-        my $commu = LJ::load_user( $comm );
-        $ret .= "<li>" . $commu->ljuser_display . "</li>" if $commu;
+        foreach my $comm (@official) {
+            my $commu = LJ::load_user($comm);
+            $ret .= "<li>" . $commu->ljuser_display . "</li>" if $commu;
+        }
+
+        $ret .= "</ul>";
+
+        return $ret;
     }
-
-    $ret .= "</ul>";
-
-    return $ret;
-} );
+);
 
 1;

@@ -24,7 +24,7 @@ use base 'DW::BusinessRules::Pay';
 
 use Carp qw/ confess /;
 
-use constant SECS_IN_DAY => 86400;
+use constant SECS_IN_DAY     => 86400;
 use constant CONVERSION_RATE => 0.7;
 
 ################################################################################
@@ -37,7 +37,7 @@ use constant CONVERSION_RATE => 0.7;
 #
 # ARGUMENTS: from_type, dest_type, months, days, seconds
 #
-#   from_type   required    type of paid time being converted 
+#   from_type   required    type of paid time being converted
 #   dest_type   required    destination account type
 #
 # At least one of months, days, or seconds must be supplied. If more than one
@@ -60,7 +60,7 @@ sub convert {
     confess "no amount of time was specified for conversion"
         unless $months || $days || $seconds;
 
-    if ( $from_type eq 'paid' and $dest_type eq 'premium' ) { # paid to premium
+    if ( $from_type eq 'paid' and $dest_type eq 'premium' ) {    # paid to premium
 
         # first, convert any seconds value supplied
         $seconds = int( $seconds * CONVERSION_RATE ) if $seconds;
@@ -72,7 +72,8 @@ sub convert {
         #   A 30-day month is assumed as per existing business logic
         $seconds += int( $months * 30 * CONVERSION_RATE * SECS_IN_DAY ) if $months;
 
-    } else { # premium to paid
+    }
+    else {    # premium to paid
 
         # again, first with the seconds.
         # remember that dividing by a fraction is the same as multiplying by
@@ -80,10 +81,10 @@ sub convert {
         $seconds = int( $seconds / CONVERSION_RATE ) if $seconds;
 
         # then the days
-        $seconds += int ( $days / CONVERSION_RATE * SECS_IN_DAY ) if $days;
+        $seconds += int( $days / CONVERSION_RATE * SECS_IN_DAY ) if $days;
 
         # then the months
-        $seconds += int ( $months * 30 / CONVERSION_RATE * SECS_IN_DAY ) if $months;
+        $seconds += int( $months * 30 / CONVERSION_RATE * SECS_IN_DAY ) if $months;
 
     }
 

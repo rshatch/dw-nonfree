@@ -24,8 +24,8 @@ use YAML::Any;
 
 DW::Routing->register_string( '/site/staff', \&staff_page, app => 1 );
 
-
 my $staff_groups = undef;
+
 sub staff_page {
     $staff_groups ||= generate_staff_groups();
 
@@ -33,29 +33,32 @@ sub staff_page {
 }
 
 sub generate_staff_groups {
-    my $groups = YAML::Any::LoadFile( LJ::resolve_file( "etc/staff.yaml" ) );
+    my $groups = YAML::Any::LoadFile( LJ::resolve_file("etc/staff.yaml") );
+
     # This takes the list of usernames, determines if they are a journal or a community
     # and makes a list of the ljuser_display under the proper type if the username exists
     # otherwise treats it as a journal, and just lists the plain text username.
-    foreach my $group ( @$groups ) {
-        foreach my $person ( @{$group->{people}} ) {
+    foreach my $group (@$groups) {
+        foreach my $person ( @{ $group->{people} } ) {
             my $official = $person->{official} || [];
-            my $result = {};
-            foreach my $name ( @$official ) {
-                my $u = LJ::load_user($name);
+            my $result   = {};
+            foreach my $name (@$official) {
+                my $u    = LJ::load_user($name);
                 my $text = $u ? $u->ljuser_display : $name;
                 if ( $u && $u->is_community ) {
-                    push @{$result->{community}}, $text
-                } else {
-                    push @{$result->{journal}}, $text
+                    push @{ $result->{community} }, $text;
+                }
+                else {
+                    push @{ $result->{journal} }, $text;
                 }
             }
             if ( $result != {} ) {
                 $person->{official} = $result;
-            } else {
+            }
+            else {
                 delete $person->{official};
             }
-            
+
         }
     }
     return $groups;

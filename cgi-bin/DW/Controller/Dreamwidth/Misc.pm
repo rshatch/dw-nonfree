@@ -23,8 +23,8 @@ use DW::Routing;
 
 DW::Routing->register_static( '/about', 'misc/about.tt', app => 1 );
 
-DW::Routing->register_static( '/site/bot', 'site/bot.tt', app => 1 );
-DW::Routing->register_static( '/site/brand', 'site/brand.tt', app => 1 );
+DW::Routing->register_static( '/site/bot',    'site/bot.tt',    app => 1 );
+DW::Routing->register_static( '/site/brand',  'site/brand.tt',  app => 1 );
 DW::Routing->register_static( '/site/policy', 'site/policy.tt', app => 1 );
 
 DW::Routing->register_string( "/internal/local/404", \&error_404_handler, app => 1 );
@@ -63,7 +63,7 @@ sub error_404_handler {
         "Heisenberg may or may not have 404ed here.",
     );
 
-    my $quip = $quips[int( rand( scalar @quips ) )];
+    my $quip = $quips[ int( rand( scalar @quips ) ) ];
     return DW::Template->render_template( 'error/404.tt', { quip => $quip } );
 }
 

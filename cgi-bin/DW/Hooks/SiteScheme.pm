@@ -18,35 +18,44 @@ use strict;
 use LJ::Hooks;
 use DW::SiteScheme;
 
-LJ::Hooks::register_hook('modify_scheme_list', sub {
-    my ( $schemes, $merge_func ) = @_;
+LJ::Hooks::register_hook(
+    'modify_scheme_list',
+    sub {
+        my ( $schemes, $merge_func ) = @_;
 
-    $merge_func->(
-        'celerity-local' => { parent => 'celerity', title => "Celerity" },
-        'dreamwidth' => { parent => 'global', internal => 1 },
-        'gradation-horizontal-local' => { parent => 'gradation-horizontal', title => "Gradation Horizontal" },
-        'gradation-vertical-local' => { parent => 'gradation-vertical', title => "Gradation Vertical" },
-        'tropo-common' => { parent => 'common', internal => 1 },
-        'tropo-purple' => { parent => 'tropo-common', title => "Tropospherical Purple" },
-        'tropo-red' => { parent => 'tropo-common', title => "Tropospherical Red" },
-    );
+        $merge_func->(
+            'celerity-local' => { parent => 'celerity', title    => "Celerity" },
+            'dreamwidth'     => { parent => 'global',   internal => 1 },
+            'gradation-horizontal-local' =>
+                { parent => 'gradation-horizontal', title => "Gradation Horizontal" },
+            'gradation-vertical-local' =>
+                { parent => 'gradation-vertical', title => "Gradation Vertical" },
+            'tropo-common' => { parent => 'common',       internal => 1 },
+            'tropo-purple' => { parent => 'tropo-common', title    => "Tropospherical Purple" },
+            'tropo-red'    => { parent => 'tropo-common', title    => "Tropospherical Red" },
+        );
 
-    @{$schemes} = (
-        { scheme => "tropo-red" },
-        { scheme => "tropo-purple" },
-        { scheme => "celerity-local",
-            alt => 'siteskins.celerity.alt',
-            desc => 'siteskins.celerity.desc', },
-        { scheme => "gradation-horizontal-local",
-            alt => 'siteskins.gradation-horizontal.alt',
-            desc => 'siteskins.gradation-horizontal.desc',
-        },
-        { scheme => "gradation-vertical-local",
-            alt => 'siteskins.gradation-vertical.alt',
-            desc => 'siteskins.gradation-vertical.desc',
-        },
-        { scheme => "lynx" },
-    );
-});
+        @{$schemes} = (
+            { scheme => "tropo-red" },
+            { scheme => "tropo-purple" },
+            {
+                scheme => "celerity-local",
+                alt    => 'siteskins.celerity.alt',
+                desc   => 'siteskins.celerity.desc',
+            },
+            {
+                scheme => "gradation-horizontal-local",
+                alt    => 'siteskins.gradation-horizontal.alt',
+                desc   => 'siteskins.gradation-horizontal.desc',
+            },
+            {
+                scheme => "gradation-vertical-local",
+                alt    => 'siteskins.gradation-vertical.alt',
+                desc   => 'siteskins.gradation-vertical.desc',
+            },
+            { scheme => "lynx" },
+        );
+    }
+);
 
 1;
