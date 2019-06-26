@@ -692,8 +692,12 @@ q { font-style: italic;
 }
 $userpic_css
 
-.entry .userpic a, .comment .userpic a {
+.userpic a {
     display: block;
+    line-height: 0;
+}
+
+.entry .userpic a, .comment .userpic a {
     position: absolute;
     padding: 5px;
 }
