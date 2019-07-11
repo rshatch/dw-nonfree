@@ -652,8 +652,12 @@ function Page::print_default_stylesheet () {
     }
     $userpic_css
 
-    .entry .userpic a, .comment .userpic a {
+    .userpic a {
         display: block;
+        line-height: 0;
+    }
+
+    .entry .userpic a, .comment .userpic a {
         position: absolute;
         padding: 5px;
     }
@@ -776,14 +780,20 @@ function Page::print_default_stylesheet () {
     }
     .comment-content { border-top: 1px transparent solid; } /* for firefox */
 
-    /* To constrain the width and prevent layout breaking */
+    /* Constrain image dimensions.
+        Job 1: Don't trash the layout sideways.
+        Job 2: Limit height to fit inside the viewport. Having to scroll to see a
+          portrait of someone is nonsense.
+        Job 3: Defend the native aspect ratio.
+        Job 4: Respect the width/height HTML attributes for scaling down OR up
+          (within the limits of the container), but if they conflict with the aspect
+          ratio, treat them as maximums and let the aspect ratio win. */
     .entry-content img, .comment-content img {
-        max-width: 100%;
         height: auto;
-    }
-
-    @media $large_media_query {
-        .entry-content img, .comment-content img { max-width: none; }
+        max-width: 100%;
+        max-height: 95vh;
+        object-fit: contain;
+        object-position: left;
     }
 
     .page-recent .journal-type-P.has-userpic.no-subject .entry-content,
