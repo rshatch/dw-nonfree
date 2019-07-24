@@ -5,7 +5,7 @@ layerinfo redist_uniq = "siteviews/tropo-red";
 
 function Page::print_theme_stylesheet() {
     # Do not actually *print* any stylesheets here, but you can $*SITEVIEWS->need_res(...); here to pull in anything.
-    $*SITEVIEWS->need_res( "stc/siteviews/tropo-red.css" );
+    $*SITEVIEWS->need_res( {"group" => "jquery"}, "stc/siteviews/tropo-red.css" );
 }
 
 #NEWLAYER: siteviews/tropo-purple
@@ -15,6 +15,6 @@ layerinfo redist_uniq = "siteviews/tropo-purple";
 
 function Page::print_theme_stylesheet() {
     # Do not actually *print* any stylesheets here, but you can $*SITEVIEWS->need_res(...); here to pull in anything.
-    $*SITEVIEWS->need_res( "stc/siteviews/tropo-purple.css" );
+    $*SITEVIEWS->need_res( {"group" => "jquery"}, "stc/siteviews/tropo-purple.css" );
 }
 
