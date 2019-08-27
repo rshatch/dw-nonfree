@@ -38,7 +38,9 @@ $header-height: 7em;
     margin: 0;
     border-style: solid;
     border-width: 1em 0;
-    min-height: 100vh;
+    @supports (display: flex) { // exclude IE11 bc it can't handle min-height + flex-direction: column
+        min-height: 100vh;
+    }
 }
 
 #canvas, #page {
@@ -55,7 +57,7 @@ $header-height: 7em;
 }
 
 #content, #page {
-  flex: 1;
+  flex-grow: 1;
 }
 
 
