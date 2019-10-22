@@ -36,6 +36,7 @@
 $_red:              #c1272d; // foreground red
 $_dark-red:         #a42226; // background red
 $_pink:             #f4717a;
+$_light-pink:       #ffd8d8;
 
 $_light-gray:       #f7f7f7;
 $_low-contrast-gray:#ddd;
@@ -60,6 +61,9 @@ $secondary-color:     $_mid-gray;
 $strong-accent-color: $_dark-red;
 $soft-accent-color:   $_pink;
 $border-color:        $_low-contrast-gray;
+$highlight-color:     $_light-pink;
+$highlight-border:    $_red;
+$highlight-text-color:$_off-black
 
 $inactive-color:      $_dark-gray;
 

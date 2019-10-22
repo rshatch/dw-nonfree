@@ -37,6 +37,7 @@ $_purple:           #5e3da6;
 $_bright-purple:    saturate( $_purple, 30% );
 $_dark-purple:      #3a155a;
 $_pink:             #f3d2fc;
+$_light-purple      #d3afec;
 
 $_light-gray:       #f7f7f7;
 $_low-contrast-gray:#ddd;
@@ -61,6 +62,9 @@ $secondary-color:     $_mid_gray;
 $strong-accent-color: $_dark-purple;
 $soft-accent-color:   $_pink;
 $border-color:        $_low-contrast-gray;
+$highlight-color:     $_light-purple;
+$highlight-border:    $_purple;
+$highlight-text-color:$_off-black
 
 $inactive-color:      $_dark-gray;
 
@@ -119,11 +123,11 @@ $reveal-border-color:                   $form-border-color;
 $reveal-close-color:                    $link-color;
 
 // sub-nav
-$sub-nav-font-color:	$inactive-color;
+$sub-nav-font-color:    $inactive-color;
 
 // pagination
-$pagination-link-font-color:	$inactive-color;
-$pagination-link-unavailable-font-color:	$inactive-color;
+$pagination-link-font-color:    $inactive-color;
+$pagination-link-unavailable-font-color:    $inactive-color;
 
 // tables
 $table-bg:              $form-bg-color;
