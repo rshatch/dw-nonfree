@@ -37,7 +37,7 @@ $_purple:           #5e3da6;
 $_bright-purple:    saturate( $_purple, 30% );
 $_dark-purple:      #3a155a;
 $_pink:             #f3d2fc;
-$_light-purple      #d3afec;
+$_light-purple:     #d3afec;
 
 $_light-gray:       #f7f7f7;
 $_low-contrast-gray:#ddd;
@@ -64,7 +64,7 @@ $soft-accent-color:   $_pink;
 $border-color:        $_low-contrast-gray;
 $highlight-color:     $_light-purple;
 $highlight-border:    $_purple;
-$highlight-text-color:$_off-black
+$highlight-text-color:$_off-black;
 
 $inactive-color:      $_dark-gray;
 
