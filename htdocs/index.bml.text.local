@@ -19,8 +19,6 @@
 
 .create.join_dreamwidth.content.nopayments=Creating an account requires an invite code. (<a [[aopts]]>Why?</a>)
 
-.create.paymentlink=Make Payment
-
 .create.paymentlink2=Create Paid Account
 
 .create.use_code=Use Code
