@@ -70,6 +70,7 @@ the same terms as Perl itself.  For a copy of the license, please reference
                 <div id="content" role="main" [% sections.contentopts %]>
                 <div class="row">
                     <div class="columns large-12">
+                        [%- PROCESS block.msgs -%]
                     <h1>[% sections.title %]</h1>
                     </div>
                 </div>
@@ -127,6 +128,7 @@ the same terms as Perl itself.  For a copy of the license, please reference
                 </div>
 
                 <div id="content" role="main" [% sections.contentopts %]>
+                    [%- PROCESS block.msgs -%]
                 <h1>[% sections.title %]</h1>
                 [% content %]
                 </div>
