@@ -2,8 +2,7 @@
 #
 # DW::Hooks::CreditCard
 #
-# This file contains the hooks used to show DW-specific FAQs and comms
-# on community/index.bml.
+# This file contains hooks related to credit card transactions.
 #
 # Authors:
 #      Denise Paolucci <denise@dreamwidth.org>
@@ -28,7 +27,7 @@ LJ::Hooks::register_hook(
 
         my $ret;
 
-        $ret = "<p>" . BML::ml('shop.cc.charge.from') . "</p>";
+        $ret = "<p>" . LJ::Lang::ml('shop.cc.charge.from') . "</p>";
 
         return $ret;
     }
