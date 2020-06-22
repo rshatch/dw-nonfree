@@ -163,6 +163,12 @@ $masthead-bottom-accent-color:         $primary-color;
 
 @import "skins/tropo/tropo-base";
 
+// Hack to keep spirals from going where they don't belong.
+.main-nav:not(.expanded),
+.main-nav li.name {
+    background: $soft-accent-color;
+}
+
 footer {
     background-color: $soft-accent-color;
 }
