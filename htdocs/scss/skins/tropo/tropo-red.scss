@@ -89,12 +89,12 @@ $header-font-color:                     lighten( $body-font-color, 20% );
 $list-side-margin:                      1em;
 
 // we want to base these on $body-font-color rather than the random variables they're based on
-$blockquote-font-color:                 tint( $body-font-color, 20% );
+$blockquote-font-color:                 mix( #ffffff, $body-font-color, 20% );
 
 // We use these to style anchors1
 $anchor-text-decoration:               underline;
 $anchor-font-color:                    $link-color;
-$anchor-font-color-visited:            shade( desaturate( $anchor-font-color, 20% ), 20% );
+$anchor-font-color-visited:            mix( #000000, desaturate( $anchor-font-color, 20% ), 20% );
 $anchor-font-color-hover:              adjust-color( $anchor-font-color, $red: 40, $green: -80, $blue: -80 );
 
 // forms
