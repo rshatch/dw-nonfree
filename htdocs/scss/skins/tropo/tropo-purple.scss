@@ -34,7 +34,6 @@
 
 // color names. Only use these variables in the color assignment section
 $_purple:           #5e3da6;
-$_bright-purple:    saturate( $_purple, 30% );
 $_dark-purple:      #3a155a;
 $_pink:             #f3d2fc;
 $_light-purple:     #d3afec;
@@ -54,12 +53,12 @@ $_support-fg-green: darken( $_support-bg-green, 15% );
 // color assignment
 $background-color:    $_light-gray;
 $text-color:          $_off-black;
-$link-color:          $_bright-purple;
+$link-color:          $_dark-purple;
 
-$primary-color:       $_purple;
+$primary-color:       $_dark-purple;
 $primary-text-color:  $_white;      // color of text on a $primary-color background
 $secondary-color:     $_mid_gray;
-$strong-accent-color: $_dark-purple;
+$strong-accent-color: $_purple;
 $soft-accent-color:   $_pink;
 $border-color:        $_low-contrast-gray;
 $highlight-color:     $_light-purple;
@@ -95,8 +94,8 @@ $blockquote-font-color:                 mix( #ffffff, $body-font-color, 20% );
 // We use these to style anchors1
 $anchor-text-decoration:               underline;
 $anchor-font-color:                    $link-color;
-$anchor-font-color-visited:            mix( #000000, desaturate( $anchor-font-color, 20% ), 20% );
-$anchor-font-color-hover:              adjust-color( $anchor-font-color, $red: 40, $green: -80, $blue: -80 );
+$anchor-font-color-visited:            $_off-black;
+$anchor-font-color-hover:              $_purple;
 
 // forms
 $form-label-font-color:                 lighten($body-font-color, 20%);
@@ -110,6 +109,7 @@ $fieldset-border-color:                 $form-border-color;
 $legend-bg:                             transparent;
 $input-prefix-bg:                       darken($input-bg-color, 5%);
 $input-prefix-border-color:             $input-border-color;
+$button-bg-hover:                       $strong-accent-color;
 
 // alerts
 $alert-function-factor: 20%;
@@ -133,8 +133,8 @@ $pagination-link-unavailable-font-color:    $inactive-color;
 $table-bg:              $form-bg-color;
 $table-even-row-bg:     $panel-bg;
 $table-border-color:    $border-color;
-$table-head-bg:         $primary-color;
-$table-head-font-color: $primary-text-color;
+$table-head-bg:         $highlight-color;
+$table-head-font-color: $highlight-text-color;
 $table-row-font-color:  $text-color;
 
 // navigation
@@ -145,12 +145,12 @@ $topbar-bgimage-position:              11px 50% no-repeat;
 $topbar-bg:                            $soft-accent-color url($topbar-bgimage) $topbar-bgimage-position;
 $topbar-link-weight:                   normal;
 $topbar-link-color:                    $text-color;
-$topbar-link-bg-hover:                 $strong-accent-color url($topbar-bgimage-hover) $topbar-bgimage-position;
-$topbar-link-bg-active:                $strong-accent-color;
+$topbar-link-bg-hover:                 $primary-color url($topbar-bgimage-hover) $topbar-bgimage-position;
+$topbar-link-bg-active:                $primary-color;
 
 $topbar-dropdown-bg:                   $topbar-bg;
 $topbar-dropdown-link-color:           $primary-text-color;
-$topbar-dropdown-link-bg:              $primary-color url($topbar-bgimage-hover) $topbar-bgimage-position;
+$topbar-dropdown-link-bg:              $strong-accent-color url($topbar-bgimage-hover) $topbar-bgimage-position;
 $topbar-dropdown-link-bg-hover:        $topbar-link-bg-hover;
 
 $topbar-menu-link-color:               $topbar-link-color;
@@ -159,7 +159,8 @@ $topbar-menu-icon-color:               $topbar-link-color;
 $topbar-height: 2rem;
 $topbar-dropdown-toggle-alpha: 0.8;
 
-$masthead-bottom-accent-color:         $primary-color;
+$masthead-bottom-accent-color:         $strong-accent-color;
+$body-border-color:                    $primary-color;
 
 @import "skins/tropo/tropo-base";
 
