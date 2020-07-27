@@ -177,3 +177,18 @@ $masthead-bottom-accent-color:         $soft-accent-color;
 footer {
     background: #eee url(/img/tropo-red/bg_footer_gradient.png) repeat-x;
 }
+
+
+.action-box ul.pagination {
+	a { color: $highlight-text-color }
+
+	li.current:hover a, li.current a:focus {
+		background-color: $primary-color;
+	}
+
+	li:hover a, li a:focus, {
+		background-color: $input-border-color;
+		
+	}
+	
+}
