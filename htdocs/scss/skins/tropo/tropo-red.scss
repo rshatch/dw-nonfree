@@ -85,7 +85,7 @@ $base-line-height:  1.5;
 // We use these to control header font styles
 $header-font-family:                    Arial, sans-serif;
 $page-title-color:                      $primary-color;
-$header-font-color:                     lighten( $body-font-color, 20% );
+$header-font-color:                     lighten( $body-font-color, 10% );
 $list-side-margin:                      1em;
 
 // we want to base these on $body-font-color rather than the random variables they're based on
