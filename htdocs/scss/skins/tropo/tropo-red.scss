@@ -186,9 +186,15 @@ footer {
 		background-color: $primary-color;
 	}
 
-	li:hover a, li a:focus, {
+	li:hover a, li a:focus {
 		background-color: $input-border-color;
 		
 	}
+
+	li.current a:visited {
+    background-color: $primary-color;
+    color: $pagination-link-current-font-color;
+    
+}
 	
 }
