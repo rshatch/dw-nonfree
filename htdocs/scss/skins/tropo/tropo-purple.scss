@@ -128,6 +128,7 @@ $sub-nav-font-color:    $inactive-color;
 // pagination
 $pagination-link-font-color:    $inactive-color;
 $pagination-link-unavailable-font-color:    $inactive-color;
+$pagination-link-visited-color: $strong-accent-color;
 
 // tables
 $table-bg:              $form-bg-color;
@@ -175,3 +176,8 @@ footer {
 }
 
 .action-box ul.pagination a { color: $highlight-text-color }
+
+.action-box ul.pagination li.current a:visited {
+    background-color: $primary-color;
+    color: $pagination-link-current-font-color;
+}
